@@ -20,9 +20,11 @@ Gem::Specification.new do |s|
     ".document",
      ".gitignore",
      "LICENSE",
+     "README.markdown",
      "Rakefile",
      "VERSION",
      "lib/system.rb",
+     "system.gemspec",
      "test/helper.rb",
      "test/test_system.rb"
   ]
