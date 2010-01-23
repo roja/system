@@ -1,5 +1,6 @@
 # system includes
 require 'singleton'
+require 'rbconfig'
 
 # java includes
 if /java/.match(RUBY_PLATFORM)
@@ -10,47 +11,33 @@ end
 module HostSystem
 
   def self.os
-    SystemInfo.instance.os
+    return @os if defined? @os # if we already know then pass it
+    os_name = RUBY_PLATFORM
+    os_name = RbConfig::CONFIG['host_os'] if defined? RbConfig::CONFIG
+    os_name = System.getProperty('os.name').downcase if jruby?
+    @os = case os_name
+    when /linux/ then :linux
+    when /win/ then :windows
+    when /solaris/ then :solaris
+    when /bsd/ then :bsd
+    when /darwin/ then
+      defined? RbConfig::CONFIG && RbConfig::CONFIG['build_vendor'] == 'apple' ? :osx : :darwin
+    when /mac.*?os.*?x/ then :osx
+    else
+      :unknown
+    end
   end
 
-  def self.jruby?
+  def self.java?
     !(/java/.match(RUBY_PLATFORM).nil?)
   end
 
-  class SystemInfo
-    include Singleton
-
-    def initialize
+  def self.jruby?
+    if HostSystem::java?
+      /jruby/.match(RUBY_ENGINE)
+    else
+      false
     end
-    
-    def os
-      return @os if defined? @os # if we already know then pass it
-      if HostSystem::jruby?
-        @os = case System.getProperty('os.name').downcase
-        when /linux/ then :linux
-        when /win/ then :windows
-        when /solaris/ then :solaris
-        when /bsd/ then :bsd
-        when /darwin/ then :darwin
-        when /mac.*?os.*?x/ then :osx
-        else
-          :unknown
-        end
-      else
-        potential_os = case RUBY_PLATFORM
-        when /linux/ then :linux
-        when /win/ then :windows
-        when /solaris/ then :solaris
-        when /bsd/ then :bsd
-        when /darwin/ then :darwin
-        else
-          :unknown
-        end
-        potential_os = :osx if potential_os == :darwin && defined? Config::CONFIG && Config::CONFIG['build_vendor'] == 'apple'
-        @os = potential_os
-      end      
-    end
-
   end
 
 end
