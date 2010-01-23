@@ -26,7 +26,8 @@ Heres a few little examples of using system within your programs.
     require 'rubygems'
     require 'system'
 
-    HostSystem::os => Current OS as a symbol i.e. :windows, :linux, :osx, :bsd
+    HostSystem::os              # => Current OS as a symbol i.e. :windows, :linux, :osx, :bsd, :darwin, :solaris
+    HostSystem::jruby?          # => Are we running on jruby?
 
 ## Note on Patches/Pull Requests ##
 

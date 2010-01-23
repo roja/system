@@ -30,7 +30,7 @@ module HostSystem
         when /linux/ then :linux
         when /win/ then :windows
         when /solaris/ then :solaris
-        when /bsd/ then :basd
+        when /bsd/ then :bsd
         when /darwin/ then :darwin
         when /mac.*?os.*?x/ then :osx
         else
@@ -41,7 +41,7 @@ module HostSystem
         when /linux/ then :linux
         when /win/ then :windows
         when /solaris/ then :solaris
-        when /bsd/ then :basd
+        when /bsd/ then :bsd
         when /darwin/ then :darwin
         else
           :unknown
