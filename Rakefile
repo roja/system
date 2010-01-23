@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "system"
-    gem.summary = %Q{System is a pure ruby interface to gather current systems information; OS, CPU, Filesystem etc.}
-    gem.description = %Q{System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc.}
+    gem.summary = %Q{System is a pure ruby interface to gather current systems information; OS, CPU, Filesystem etc...}
+    gem.description = %Q{System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc...}
     gem.email = "roja@arbia.co.uk"
     gem.homepage = "http://github.com/roja/system"
     gem.authors = ["Roja Buck"]
