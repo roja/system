@@ -1,57 +1,39 @@
-require 'rubygems'
-require 'rake'
+require 'rake/version_task'
+require 'rspec/core/rake_task'
+require 'rubygems/package_task'
+require 'pathname'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "system"
-    gem.summary = %Q{System is a pure ruby interface to gather current systems information; OS, CPU, Filesystem etc...}
-    gem.description = %Q{System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc...}
-    gem.email = "roja@arbia.co.uk"
-    gem.homepage = "http://github.com/roja/system"
-    gem.authors = ["Roja Buck"]
-    gem.rubyforge_project = 'system'
-    #    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-  Jeweler::RubyforgeTasks.new do |rubyforge|
-    rubyforge.doc_task = "rdoc"
-  end
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+spec = Gem::Specification.new do |s|
+  s.name         = 'system'
+  s.version      = Pathname.new(__FILE__).dirname.join('VERSION').read.strip
+  s.author       = ['Roja Buck', 'Ryan Scott Lewis']
+  s.email        = ['roja@arbia.co.uk', 'ryan@rynet.us']
+  s.homepage     = "http://github.com/roja/#{s.name}"
+  s.summary      = 'System is a pure ruby interface to gather current systems information; OS, CPU, Filesystem etc...'
+  s.description  = 'System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc...'
+  s.require_path = 'lib'
+  s.files        = `git ls-files`.lines.to_a.collect { |s| s.strip }
+  s.executables  = `git ls-files -- bin/*`.lines.to_a.collect { |s| File.basename(s.strip) }
+  
+  s.add_development_dependency 'version', '~> 1.0.0'
+  s.add_development_dependency 'rake', '~> 0.9'
+  s.add_development_dependency 'guard-rspec', '~> 2.1.1'
+  s.add_development_dependency 'guard-yard', '~> 2.0.1'
+  s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
+  s.add_development_dependency 'fuubar', '~> 1.1'
+  s.add_development_dependency 'kramdown', '~> 0.14.0'
 end
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+Rake::VersionTask.new do |t|
+  t.with_git_tag = true
+  t.with_gemspec = spec
 end
 
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
+RSpec::Core::RakeTask.new
+
+Gem::PackageTask.new(spec) do |t|
+  t.need_zip = false
+  t.need_tar = false
 end
 
-task :test => :check_dependencies
-
-task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "system #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+task :default => :spec
