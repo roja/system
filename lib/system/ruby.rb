@@ -1,4 +1,4 @@
-require 'system/version'
+require 'system'
 
 class System
   
