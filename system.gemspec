@@ -2,14 +2,14 @@
 
 Gem::Specification.new do |s|
   s.name = "system"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roja Buck", "Ryan Scott Lewis"]
   s.date = "2012-11-20"
   s.description = "System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc..."
   s.email = ["roja@arbia.co.uk", "ryan@rynet.us"]
-  s.files = [".gitignore", ".rvmrc", "Gemfile", "Gemfile.lock", "Guardfile", "LICENSE", "NOTES.md", "README.md", "Rakefile", "VERSION", "lib/system.rb", "lib/system/backwards_compatibility.rb", "lib/system/cpu.rb", "lib/system/os.rb", "lib/system/ruby.rb", "lib/system/version.rb", "spec/spec_helper.rb", "spec/system/backwards_compatibility_spec.rb", "spec/system/version_spec.rb", "system.gemspec"]
+  s.files = [".gitignore", ".rvmrc", "Gemfile", "Gemfile.lock", "Guardfile", "LICENSE", "NOTES.md", "README.md", "Rakefile", "VERSION", "lib/system.rb", "lib/system/backwards_compatibility.rb", "lib/system/cpu.rb", "lib/system/os.rb", "lib/system/ruby.rb", "spec/spec_helper.rb", "spec/system/backwards_compatibility_spec.rb", "spec/system/version_spec.rb", "system.gemspec"]
   s.homepage = "http://github.com/roja/system"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
