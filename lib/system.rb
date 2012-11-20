@@ -7,7 +7,7 @@ require 'version'
 # Java includes - Have to load this way to avoid overloading of our classes
 if /java/.match(RUBY_PLATFORM) # TODO: For now, this is a good place for this but it will need abstracting..
   require 'java'
-  import 'java.lang.System'
+  java_import java.lang.System
 end
 
 # Prepare LOAD_PATH
