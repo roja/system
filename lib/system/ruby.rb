@@ -245,7 +245,7 @@ class System
       # @return [TrueClass, FalseClass] Is the current Ruby interpreter JRuby?
       # @since 0.1.1
       def jruby?
-        java? ? /jruby/ =~ engine : false
+        java? ? engine =~ /jruby/ : false
       end
       
     end
