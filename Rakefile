@@ -46,6 +46,8 @@ namespace :gem do
   end
 end
 
+task :gemspec => 'gem:spec'
+
 require 'rubygems/package_task'
 Gem::PackageTask.new(spec) do |t|
   t.need_zip = false
