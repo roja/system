@@ -1,4 +1,4 @@
-# System [![Build Status](https://secure.travis-ci.org/roja/system.png)](http://travis-ci.org/roja/system)
+# System
 
 System is a pure ruby interface to gather current systems information.
 
@@ -10,9 +10,9 @@ System offers a simple to use interface to gather an array of information includ
 
 ## Install
 
-### Bundler: `gem 'dsl'`
+### Bundler: `gem 'system'`
 
-### RubyGems: `gem install dsl`
+### RubyGems: `gem install system`
 
 ## Usage
 
@@ -57,6 +57,10 @@ System::CPU[0].cores[0].flags    # => An Array containing the Core's flags as Sy
 System::CPU[0].cores[0].siblings # => An Array containing the other Cores in the CPU
 System::CPU[0].cores[0].siblings # => An Array containing the other Cores in the CPU
 ```
+
+###### Build Status
+
+[![Build Status](https://secure.travis-ci.org/roja/system.png)](http://travis-ci.org/roja/system)
 
 ## Contributing
 

@@ -1,4 +1,4 @@
-require 'system/version'
+require 'system'
 
 class System
   class << self
@@ -9,6 +9,7 @@ class System
     #
     # @return [Symbol] The name of the operating system.
     # @since 0.1.0
+    # @deprecated 0.2.0
     def os
       System::OS.name
     end
@@ -20,6 +21,7 @@ class System
     #
     # @return [TrueClass, FalseClass] Is the current Ruby implementation using Java?
     # @since 0.1.0
+    # @deprecated 0.2.0
     def java?
       System::Ruby.java?
     end
@@ -30,6 +32,7 @@ class System
     #
     # @return [TrueClass, FalseClass] Is the current Ruby implementation JRuby?
     # @since 0.1.0
+    # @deprecated 0.2.0
     def jruby?
       System::Ruby.jruby?
     end

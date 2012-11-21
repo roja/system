@@ -1,4 +1,4 @@
-require 'system/version'
+require 'system'
 
 class System
   
@@ -36,6 +36,64 @@ class System
     Darwin = :darwin
     
     class << self
+      
+      # @method linux?
+      # Get if the name of the operating system running on the current host is `System::OS::Linux`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :linux
+      #   System::OS.linux? # => true
+      
+      # @method windows?
+      # Get if the name of the operating system running on the current host is `System::OS::Windows`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :windows
+      #   System::OS.windows? # => true
+      
+      # @method solaris?
+      # Get if the name of the operating system running on the current host is `System::OS::Solaris`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :solaris
+      #   System::OS.solaris? # => true
+      
+      # @method bsd?
+      # Get if the name of the operating system running on the current host is `System::OS::BSD`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :bsd
+      #   System::OS.bsd? # => true
+      
+      # @method osx?
+      # Get if the name of the operating system running on the current host is `System::OS::OSX`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :osx
+      #   System::OS.osx? # => true
+      
+      # @method darwin?
+      # Get if the name of the operating system running on the current host is `System::OS::Darwin`.
+      # 
+      # @since 0.1.3
+      # @return [TrueClass, FalseClass]
+      # @example
+      #   System::OS.name # => :darwin
+      #   System::OS.darwin? # => true
+      
+      [Linux, Windows, Solaris, BSD, OSX, Darwin].each do |name|
+        define_method("#{name}?") { self.name == name }
+      end
       
       # Get the name of the operating system running on the current host.
       #

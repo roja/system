@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     system (0.1.2)
+      version (~> 1.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -66,4 +67,3 @@ DEPENDENCIES
   rake (~> 0.9)
   rb-fsevent (~> 0.9.1)
   system!
-  version (~> 1.0.0)
