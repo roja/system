@@ -35,6 +35,12 @@ System::CPU.count   # => Current number of CPUs, including individual cores
 
 * SPECS! Decide how to stub out system calls and replace with fixtures.
 
+### System::OS
+
+```ruby
+System::OS.language # => The current OS's ISO 639 language code as a String
+```
+
 ### System::CPU
 
 ```ruby
