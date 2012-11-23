@@ -21,10 +21,59 @@ $:.unshift(__LIB__.to_s) unless $:.include?(__LIB__.to_s)
 # @since 0.1.0
 class System
   is_versioned
+  
+  class << self
+    
+    # Get the name of the operating system running on the current host.
+    # 
+    # Delegates to {System::OS.name} for backwards compatibility with 0.1.0.
+    #
+    # @return [Symbol] The name of the operating system.
+    # @since 0.1.0
+    # @deprecated 0.2.0
+    # @see System::OS.name
+    def os
+      OS.name
+    end
+    alias_method :operating_system, :os
+    
+    # Check if Ruby is using Java.
+    # 
+    # Delegates to {System::Ruby.java?} for backwards compatibility with 0.1.0.
+    #
+    # @return [true, false] Is the current Ruby implementation using Java?
+    # @since 0.1.0
+    # @deprecated 0.2.0
+    # @see System::Ruby.java?
+    def java?
+      Ruby.java?
+    end
+    
+    # Check if Ruby is JRuby.
+    # 
+    # Delegates to {System::Ruby.jruby?} for backwards compatibility with 0.1.0.
+    #
+    # @return [true, false] Is the current Ruby implementation JRuby?
+    # @since 0.1.0
+    # @deprecated 0.2.0
+    # @see System::Ruby.jruby?
+    def jruby?
+      Ruby.jruby?
+    end
+    
+  end
 end
 
+# Constant for backwards compatibility with 0.1.0.
+# @since 0.1.0
+# @deprecated 0.2.0
+# @see System
+HostSystem = System
+
 # Local includes
-require 'system/ruby'
-require 'system/os'
 require 'system/cpu'
-require 'system/backwards_compatibility'
+require 'system/os'
+require 'system/ruby'
+require 'system/screen'
+require 'system/shell'
+require 'system/terminal'
