@@ -50,7 +50,7 @@ class System
       # Return if we have information about the copyright.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.copyright  # => "ruby - Copyright (C) 1993-2012 Yukihiro Matsumoto"
       #   System::Ruby.copyright? # => true
@@ -68,7 +68,7 @@ class System
       # Return if we have information about the description.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.description  # => "ruby 1.9.3p327 (2012-11-10 revision 37606) [x86_64-darwin12.2.0]"
       #   System::Ruby.description? # => true
@@ -85,7 +85,7 @@ class System
       # Return if we have information about the engine.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.engine # => "ruby"
       #   System::Ruby.engine? # => true
@@ -102,7 +102,7 @@ class System
       # Return if we have information about the patchlevel.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.patchlevel # => 286
       #   System::Ruby.patchlevel? # => true
@@ -119,7 +119,7 @@ class System
       # Return if we have information about the platform.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.platform # => "x86_64-darwin12.2.0"
       #   System::Ruby.platform? # => true
@@ -136,7 +136,7 @@ class System
       # Return if we have information about the revision.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.revision # => 37165
       #   System::Ruby.revision? # => true
@@ -153,7 +153,7 @@ class System
       # Return if we have information about the release_date.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.release_date # => "2012-10-12"
       #   System::Ruby.release_date? # => true
@@ -170,7 +170,7 @@ class System
       # Return if we have information about the version.
       # 
       # @since 0.1.3
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @example
       #   System::Ruby.version # => "2012-10-12"
       #   System::Ruby.version? # => true
@@ -225,7 +225,7 @@ class System
       
       # Check if Ruby is using Java as it's base language.
       #
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @since 0.1.1
       def java?
         language == Java
@@ -233,7 +233,7 @@ class System
       
       # Check if Ruby is using C or CPlusPlus as it's base language.
       #
-      # @return [TrueClass, FalseClass]
+      # @return [true, false]
       # @since 0.1.3
       def ruby?
         [C, CPlusPlus].any? { |language| self.language == language }
@@ -242,7 +242,7 @@ class System
       # Check if Ruby interpreter is JRuby.
       # Delegates to System::Ruby.jruby? for backwards compatibility.
       #
-      # @return [TrueClass, FalseClass] Is the current Ruby interpreter JRuby?
+      # @return [true, false] Is the current Ruby interpreter JRuby?
       # @since 0.1.1
       def jruby?
         java? ? engine =~ /jruby/ : false
