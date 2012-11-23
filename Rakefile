@@ -1,12 +1,16 @@
 require 'pathname'
 
+$creating_gemspec = false
+
 def require_task(path)
   begin
     require path
     
     yield
   rescue LoadError
-    puts '', "Could not load '#{path}'.", 'Try to `rake gem:spec` and `bundle install` and try again.', ''
+    unless $creating_gemspec
+      puts '', "Could not load '#{path}'.", 'Try to `rake gem:spec` and `bundle install` and try again.', ''
+    end
   end
 end
 
@@ -28,9 +32,20 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency 'guard-yard', '~> 2.0.1'
   s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
   s.add_development_dependency 'fuubar', '~> 1.1'
-  s.add_development_dependency 'kramdown', '~> 0.14.0'
+  s.add_development_dependency 'github-markup', '~> 0.7.4'
+  
+  if RUBY_PLATFORM =~ /java/
+    s.add_development_dependency 'kramdown', '~> 0.14.0'
+  else
+    s.add_development_dependency 'redcarpet', '~> 1'
+  end
 end
 
+desc 'Generate the gemspec defined in this Rakefile'
+task :gemspec do
+  $creating_gemspec = true
+  Pathname.new("#{spec.name}.gemspec").open('w') { |f| f.write(spec.to_ruby) }
+end
 
 require_task 'rake/version_task' do
   Rake::VersionTask.new do |t|
@@ -39,15 +54,6 @@ require_task 'rake/version_task' do
   end
 end
 
-namespace :gem do
-  desc 'Generate the gemspec defined in this Rakefile'
-  task :spec do
-    Pathname.new("#{spec.name}.gemspec").open('w') { |f| f.write(spec.to_ruby) }
-  end
-end
-
-task :gemspec => 'gem:spec'
-
 require 'rubygems/package_task'
 Gem::PackageTask.new(spec) do |t|
   t.need_zip = false
@@ -55,5 +61,13 @@ Gem::PackageTask.new(spec) do |t|
 end
 
 task :default do
-  puts `rake -T`
+  # displayable_tasks = Rake.application.tasks
+  # 
+  # width = displayable_tasks.collect { |t| t.name_with_args.length }.max || 10
+  # max_column = Rake.application.truncate_output? ? Rake.application.terminal_width - name.size - width - 7 : nil
+  # 
+  # displayable_tasks.each do |t|
+  #   printf "#{name} %-#{width}s  # %s\n",
+  #     t.name_with_args, max_column ? Rake.application.truncate(t.comment, max_column) : t.comment
+  # end
 end
