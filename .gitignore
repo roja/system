@@ -19,6 +19,7 @@ rdoc
 doc
 .yardoc
 pkg
+.lock
 
 ## Netbeans
 nbproject
