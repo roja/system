@@ -1,4 +1,4 @@
-module System
+class System
   class Screen
     
     # Defines a screen resolution.
@@ -29,6 +29,14 @@ module System
       # Return the Resolution instance as a String.
       # 
       # @return [String]
+      # @since 0.1.4
+      def to_s
+        "#{@width}x#{@height}"
+      end
+      
+      # Return the Resolution instance as an Array.
+      # 
+      # @return [<Integer, Integer>]
       # @since 0.1.4
       def to_s
         "#{@width}x#{@height}"
