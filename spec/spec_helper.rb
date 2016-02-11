@@ -1,11 +1,14 @@
-require 'pathname'
+require "simplecov"
+require "system"
 
-__LIB__ = Pathname.new(__FILE__).join('..', '..', 'lib').expand_path
-$:.unshift(__LIB__.to_s) unless $:.include?(__LIB__.to_s)
+RSpec.configure do |config|
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
 
-require 'system'
-require 'bundler/setup'
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+end
 
-Bundler.require(:development)
-
-Dir[ Pathname.new(__FILE__).join('..', 'support', '**', '*').expand_path ].each { |filename| require filename }
+Dir[Pathname.new(__FILE__).join("..", "support", "**", "*").expand_path].each { |filename| require filename }
