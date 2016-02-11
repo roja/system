@@ -1,53 +1,19 @@
-# -*- encoding: utf-8 -*-
+require "pathname"
 
-Gem::Specification.new do |s|
-  s.name = "system"
-  s.version = "0.1.3"
+Gem::Specification.new do |spec|
+  spec.name          = "system"
+  spec.summary       = "A library to easily gather information on the current system environment."
+  spec.description   = "System is a cross-platform and cross-implementation interface to gather system information from the current host.\n\nSystem offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem, etc."
+  spec.license       = "MIT"
+  spec.authors       = ["Roja Buck", "Ryan Scott Lewis"]
+  spec.email         = ["roja@arbia.co.uk", "ryan@rynet.us"]
+  spec.homepage      = "http://github.com/roja/system"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Roja Buck", "Ryan Scott Lewis"]
-  s.date = "2012-11-22"
-  s.description = "System is a pure ruby interface to gather systems information from the current host. System offers a simple to use interface to gather an array of information including; OS, CPU, Filesystem etc..."
-  s.email = ["roja@arbia.co.uk", "ryan@rynet.us"]
-  s.files = [".gitignore", ".rvmrc", "Gemfile", "Gemfile.lock", "Guardfile", "LICENSE", "NOTES.md", "README.md", "Rakefile", "VERSION", "lib/system.rb", "lib/system/backwards_compatibility.rb", "lib/system/cpu.rb", "lib/system/os.rb", "lib/system/ruby.rb", "lib/system/screen/resolution.rb", "spec/spec_helper.rb", "spec/system/backwards_compatibility_spec.rb", "spec/system/version_spec.rb", "system.gemspec"]
-  s.homepage = "http://github.com/roja/system"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
-  s.summary = "System is a pure ruby interface to gather current systems information; OS, CPU, Filesystem etc..."
+  spec.version       = Pathname.glob("VERSION*").first.read rescue "0.0.0"
+  spec.require_paths = ["lib"]
+  spec.files         = Dir["{Rakefile,Gemfile,README*,VERSION,LICENSE,*.gemspec,{lib,bin,examples,spec,test}/**/*}"]
+  spec.test_files    = Dir["{examples,spec,test}/**/*"]
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<version>, ["~> 1.0.0"])
-      s.add_runtime_dependency(%q<meta_tools>, ["~> 0.2.7"])
-      s.add_development_dependency(%q<rake>, ["~> 0.9"])
-      s.add_development_dependency(%q<guard-rspec>, ["~> 2.1.1"])
-      s.add_development_dependency(%q<guard-yard>, ["~> 2.0.1"])
-      s.add_development_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
-      s.add_development_dependency(%q<fuubar>, ["~> 1.1"])
-      s.add_development_dependency(%q<github-markup>, ["~> 0.7.4"])
-      s.add_development_dependency(%q<redcarpet>, ["~> 1"])
-    else
-      s.add_dependency(%q<version>, ["~> 1.0.0"])
-      s.add_dependency(%q<meta_tools>, ["~> 0.2.7"])
-      s.add_dependency(%q<rake>, ["~> 0.9"])
-      s.add_dependency(%q<guard-rspec>, ["~> 2.1.1"])
-      s.add_dependency(%q<guard-yard>, ["~> 2.0.1"])
-      s.add_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
-      s.add_dependency(%q<fuubar>, ["~> 1.1"])
-      s.add_dependency(%q<github-markup>, ["~> 0.7.4"])
-      s.add_dependency(%q<redcarpet>, ["~> 1"])
-    end
-  else
-    s.add_dependency(%q<version>, ["~> 1.0.0"])
-    s.add_dependency(%q<meta_tools>, ["~> 0.2.7"])
-    s.add_dependency(%q<rake>, ["~> 0.9"])
-    s.add_dependency(%q<guard-rspec>, ["~> 2.1.1"])
-    s.add_dependency(%q<guard-yard>, ["~> 2.0.1"])
-    s.add_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
-    s.add_dependency(%q<fuubar>, ["~> 1.1"])
-    s.add_dependency(%q<github-markup>, ["~> 0.7.4"])
-    s.add_dependency(%q<redcarpet>, ["~> 1"])
-  end
+  spec.add_dependency("version", "~> 1.0.0")
+  spec.add_dependency("aspect", "~> 0.0.2")
 end
